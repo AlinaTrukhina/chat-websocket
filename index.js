@@ -10,7 +10,7 @@ app.use(express.static(__dirname));
 
 server.on('request', app);
 
-server.listen(3000, function () { console.log('Listening on 3000'); });
+server.listen(3001, function () { console.log('Listening on 3001'); });
 
 /** Websocket **/
 const WebSocketServer = require('ws').Server;
