@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="public/styles.css" media="all">
+    <title>WebSocket Server</title>
+</head>
+<body>
+    <h1>
+        WebSocket Live Chat
+    </h1>
+    
+    <form id="messageForm">
+        <label for="messageInput">Enter message:</label>
+            <input id="messageInput" type="text" name="submitted-message"/>
+        <button id="sendButton">Send</button>
+    </form>
+
+    <ul id="messageList">
+    </ul>
+
+    <script>
+        function showMessage(text, isMine = false) {
+            document.getElementById("messageList").innerHTML += `
+            <li class="oneMessage ${isMine ? 'isMine' : 'notMine'}"> 
+                ${text} </li>
+            `;
+        }
+
+        let ws;
+        
+        // Choose correct websocket proto
+            const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            ws = new WebSocket(`${proto}://${window.location.host}`);
+
+            // ws.onmessage = (event) => {console.log(event.data)};
+            ws.addEventListener('message', event => {
+                event.data.text().then(showMessage);
+            });
+
+            document.querySelector('form').onsubmit = (event) => {
+                event.preventDefault();
+                const messageInput = document.querySelector('input');
+                ws.send(messageInput.value);
+                showMessage(messageInput.value, true);
+                messageInput.value = '';
+            }
+    </script>
+</body>
+</html>

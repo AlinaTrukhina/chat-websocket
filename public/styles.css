@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+body, html {
+    margin: 0;
+    background-color: rgb(2, 1, 8);
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+form, h1 {
+    padding-left: 40px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    border-radius: 7px;
+    padding: 7px 0;
+}
+
+#sendButton {
+    border-radius: 7px;
+    padding: 7px;
+    margin-left: 0.2em;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+#messageList {
+    list-style-type: none;
+    align-self: center;
+}
+
+li {
+    color: white;
+    width: fit-content;
+    padding: 7px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.isMine {
+    background-color: green;
+    text-align: right;
+}
+
+.notMine {
+    background-color: blue;
+}
